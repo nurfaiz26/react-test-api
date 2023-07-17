@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 let Navbar = () => {
     const activeClass = 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500'
@@ -10,6 +11,12 @@ let Navbar = () => {
     useEffect(() => {
         setCurrentPage(path)
     }, [path])
+
+    let navigate = useNavigate()
+    const handleLogout = () => {
+        Cookies.remove('token')
+        navigate('/login')
+    }
 
     return (
         <>
@@ -25,18 +32,34 @@ let Navbar = () => {
                             <li>
                                 <Link to="/" className={currentPage === '/' ? activeClass : nonActiveClass}>Home</Link>
                             </li>
-                            <li>
-                                <Link to="/berita" className={currentPage === '/berita' ? activeClass : nonActiveClass}>Berita API</Link>
-                            </li>
-                            <li>
-                                <Link to="/iklan" className={currentPage === '/iklan' ? activeClass : nonActiveClass}>Iklan API</Link>
-                            </li>
-                            <li>
-                                <Link to="/edukasi" className={currentPage === '/edukasi' ? activeClass : nonActiveClass}>Edukasi API</Link>
-                            </li>
-                            <li>
-                                <Link to="/pralogin" className={currentPage === '/pralogin' ? activeClass : nonActiveClass}>Pralogin API</Link>
-                            </li>
+                            {
+                                !Cookies.get('token') &&
+                                <>
+                                    <li>
+                                        <Link to="/login" className={currentPage === '/login' ? activeClass : nonActiveClass}>Log In</Link>
+                                    </li>
+                                </>
+                            }
+                            {
+                                Cookies.get('token') &&
+                                <>
+                                    <li>
+                                        <Link to="/berita" className={currentPage === '/berita' ? activeClass : nonActiveClass}>Berita API</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/iklan" className={currentPage === '/iklan' ? activeClass : nonActiveClass}>Iklan API</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/edukasi" className={currentPage === '/edukasi' ? activeClass : nonActiveClass}>Edukasi API</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/pralogin" className={currentPage === '/pralogin' ? activeClass : nonActiveClass}>Pralogin API</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="" className="nonActiveClass" onClick={handleLogout}>Log Out</Link>
+                                    </li>
+                                </>
+                            }
                         </ul>
                     </div>
                 </div>

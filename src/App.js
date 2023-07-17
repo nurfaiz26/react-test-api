@@ -10,6 +10,7 @@ import PraloginApi from './pages/pralogin-api';
 import { IklanProvider } from './contexts/iklanContext';
 import { EdukasiProvider } from './contexts/edukasiContext';
 import { PraloginProvider } from './contexts/praloginContext';
+import Login from './pages/login';
 
 function App() {
   return (
@@ -20,6 +21,11 @@ function App() {
             <Route path='/' element={
               <Layout>
                 <Home />
+              </Layout>
+            } />
+            <Route path='/login' element={
+              <Layout>
+                <Login />
               </Layout>
             } />
             <Route path='/berita' element={
