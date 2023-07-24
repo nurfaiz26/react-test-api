@@ -56,6 +56,9 @@ let Navbar = () => {
                                         <Link to="/pralogin" className={currentPage === '/pralogin' ? activeClass : nonActiveClass}>Pralogin API</Link>
                                     </li>
                                     <li>
+                                        <Link to="/term-policy" className={currentPage === '/term-policy' ? activeClass : nonActiveClass}>Term Policy API</Link>
+                                    </li>
+                                    <li>
                                         <Link to="" className="nonActiveClass" onClick={handleLogout}>Log Out</Link>
                                     </li>
                                 </>

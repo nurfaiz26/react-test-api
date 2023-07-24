@@ -28,7 +28,8 @@ let Login = () => {
                 console.log(res)
                 let { token } = res.data
                 Cookies.set('token', token, { expires: 1 })
-                navigate('/')
+                console.log(res.data.success)
+                res.data.success ? navigate('/') : alert(res.data.message)
             }).catch((err) => {
                 console.log(err)
             })

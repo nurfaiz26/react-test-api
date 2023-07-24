@@ -11,6 +11,8 @@ import { IklanProvider } from './contexts/iklanContext';
 import { EdukasiProvider } from './contexts/edukasiContext';
 import { PraloginProvider } from './contexts/praloginContext';
 import Login from './pages/login';
+import TermPolicyApi from './pages/term-policy-api';
+import { TermPolicyProvider } from './contexts/termPolicyContext';
 
 function App() {
   return (
@@ -55,6 +57,13 @@ function App() {
                   <PraloginApi />
                 </Layout>
               </PraloginProvider>
+            } />
+            <Route path='/term-policy' element={
+              <TermPolicyProvider>
+                <Layout>
+                  <TermPolicyApi />
+                </Layout>
+              </TermPolicyProvider>
             } />
           </Routes>
         </BrowserRouter>
